@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.carbon.assets.mapper.CarbonMetaregistryMapper">
+
+    <select id="getCarbonMetaregistryById" resultType="com.carbon.assets.vo.CarbonMetaregistryQueryVo">
+        select 
+        id,
+        project_name projectName,
+        methodology_code methodologyCode,
+        methodology_name methodologyName,
+        certified_standard certifiedStandard,
+        project_verifier projectVerifier,
+        project_owner projectOwner,
+        project_scope_type_code projectScopeTypeCode,
+        issuing_date issuingDate,
+        project_status_code projectStatusCode
+        from carbon_metaregistry
+        where id = #{id}
+    </select>
+
+</mapper>

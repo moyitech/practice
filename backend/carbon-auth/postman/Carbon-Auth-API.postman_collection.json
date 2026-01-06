@@ -1,0 +1,162 @@
+{
+  "info": {
+    "name": "Carbon Auth API",
+    "description": "Carbon认证服务API接口测试集合",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "登录接口",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountName\": \"admin\",\n  \"password\": \"123456\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:9091/auth/login",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "9091",
+          "path": ["auth", "login"]
+        },
+        "description": "用户登录接口，返回Token和用户信息"
+      },
+      "response": []
+    },
+    {
+      "name": "退出登录接口",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{token}}",
+            "description": "从登录接口获取的Token"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:9091/auth/logout",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "9091",
+          "path": ["auth", "logout"]
+        },
+        "description": "退出登录接口，清除Redis中的登录信息"
+      },
+      "response": []
+    },
+    {
+      "name": "获取注册验证码",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:9091/auth/register/code/13800138000",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "9091",
+          "path": ["auth", "register", "code", "13800138000"]
+        },
+        "description": "获取注册验证码，验证码会保存到Redis中，有效期5分钟"
+      },
+      "response": []
+    },
+    {
+      "name": "注册接口",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountName\": \"newuser\",\n  \"password\": \"123456\",\n  \"confirmPassword\": \"123456\",\n  \"phone\": \"13800138000\",\n  \"email\": \"newuser@example.com\",\n  \"code\": \"123456\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:9091/auth/register",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "9091",
+          "path": ["auth", "register"]
+        },
+        "description": "用户注册接口，需要先获取验证码"
+      },
+      "response": []
+    },
+    {
+      "name": "获取忘记密码验证码",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:9091/auth/forgotPassword/code/13800138000",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "9091",
+          "path": ["auth", "forgotPassword", "code", "13800138000"]
+        },
+        "description": "获取忘记密码验证码"
+      },
+      "response": []
+    },
+    {
+      "name": "忘记密码接口",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"phone\": \"13800138000\",\n  \"code\": \"123456\",\n  \"password\": \"newpassword\",\n  \"confirmPassword\": \"newpassword\"\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:9091/auth/forgotPassword",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "9091",
+          "path": ["auth", "forgotPassword"]
+        },
+        "description": "忘记密码接口，通过手机号和验证码重置密码"
+      },
+      "response": []
+    },
+    {
+      "name": "验证账户是否存在",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:9091/auth/verify/admin",
+          "protocol": "http",
+          "host": ["127", "0", "0", "1"],
+          "port": "9091",
+          "path": ["auth", "verify", "admin"]
+        },
+        "description": "验证账户名是否已存在，存在返回false，不存在返回true"
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
+
