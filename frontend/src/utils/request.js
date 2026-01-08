@@ -44,9 +44,17 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     const res = response.data
+    const url = response.config?.url || ''
+    const isArticleListApi = url.includes('/carbonArticle/getPageList') || url.includes('carbonArticle')
     
     // 如果返回的状态码不是200，则认为是错误
     if (res.code && res.code !== 200) {
+      // 如果是文章列表接口的错误，静默处理，不显示错误提示
+      if (isArticleListApi) {
+        console.warn('文章列表接口返回错误（接口可能未完全实现）:', res.msg?.substring(0, 100))
+        return Promise.reject(new Error(res.msg || 'Error'))
+      }
+      
       Message({
         message: res.msg || 'Error',
         type: 'error',
@@ -58,9 +66,18 @@ service.interceptors.response.use(
     }
   },
   error => {
-    // 对于404错误（接口未实现），不显示错误提示，只在控制台记录
-    if (error.response && error.response.status === 404) {
-      console.warn('接口未实现:', error.config.url)
+    const url = error.config?.url || ''
+    const isArticleListApi = url.includes('/carbonArticle/getPageList') || url.includes('carbonArticle')
+    
+    // 对于文章列表接口的所有错误，都静默处理，不显示错误提示
+    if (isArticleListApi) {
+      console.warn('文章列表接口错误（接口可能未完全实现）:', url)
+      return Promise.reject(error)
+    }
+    
+    // 对于404或500错误（接口未实现或数据库问题），不显示错误提示，只在控制台记录
+    if (error.response && (error.response.status === 404 || error.response.status === 500)) {
+      console.warn('接口错误:', url, error.response.status)
       return Promise.reject(error)
     }
     

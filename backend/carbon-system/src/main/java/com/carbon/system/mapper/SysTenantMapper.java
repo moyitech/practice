@@ -12,3 +12,6 @@ public interface SysTenantMapper extends BaseMapper<SysTenant> {
 }
 
 
+
+
+

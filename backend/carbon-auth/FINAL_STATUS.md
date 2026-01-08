@@ -351,3 +351,6 @@ tail -f /tmp/carbon-run.log
 **状态**: ✅ 构建成功 ✅ 启动成功 ⚠️ 需要配置MySQL和Redis
 
 
+
+
+

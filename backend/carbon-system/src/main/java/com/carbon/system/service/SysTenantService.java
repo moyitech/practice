@@ -9,3 +9,6 @@ public interface SysTenantService extends BaseService<SysTenant> {
 }
 
 
+
+
+

@@ -38,12 +38,17 @@ public class CarbonArticleController extends BaseController {
             @RequestParam(defaultValue = "1") Long current,
             @RequestParam(defaultValue = "10") Long size,
             @RequestParam(required = false, defaultValue = "false") Boolean asc) {
-        log.info("查询文章列表，categoryId: {}, current: {}, size: {}, asc: {}", categoryId, current, size, asc);
-        
-        Page<CarbonArticle> page = new Page<>(current, size);
-        IPage<CarbonArticle> result = carbonArticleService.getPageList(page, categoryId, asc);
-        
-        return ApiResult.ok(result);
+        try {
+            log.info("查询文章列表，categoryId: {}, current: {}, size: {}, asc: {}", categoryId, current, size, asc);
+            
+            Page<CarbonArticle> page = new Page<>(current, size);
+            IPage<CarbonArticle> result = carbonArticleService.getPageList(page, categoryId, asc);
+            
+            return ApiResult.ok(result);
+        } catch (Exception e) {
+            log.error("查询文章列表失败", e);
+            return ApiResult.fail("查询文章列表失败: " + e.getMessage());
+        }
     }
 }
 

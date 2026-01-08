@@ -10,3 +10,6 @@ public class BaseServiceImpl<M extends BaseMapper<T>, T> extends ServiceImpl<M, 
 }
 
 
+
+
+
