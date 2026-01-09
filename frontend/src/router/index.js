@@ -34,6 +34,36 @@ const routes = [
     name: 'UserInfo',
     component: () => import('@/views/maintain/user/index.vue'),
     meta: { requiresAuth: true }
+  },
+  {
+    path: '/assets/manage',
+    name: 'CarbonAssetsManage',
+    component: () => import('@/views/assets/manage/index.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/assets/develop',
+    name: 'CarbonAssetsDevelop',
+    component: () => import('@/views/assets/develop/index.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/trade/manage',
+    name: 'CarbonTradeManage',
+    component: () => import('@/views/trade/manage/index.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/news',
+    name: 'CarbonNews',
+    component: () => import('@/views/news/index.vue'),
+    meta: { requiresAuth: true }
+  },
+  {
+    path: '/system/manage',
+    name: 'SystemManage',
+    component: () => import('@/views/system/manage/index.vue'),
+    meta: { requiresAuth: true }
   }
 ]
 

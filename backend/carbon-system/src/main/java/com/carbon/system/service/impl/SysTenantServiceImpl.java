@@ -17,3 +17,5 @@ public class SysTenantServiceImpl extends BaseServiceImpl<SysTenantMapper, SysTe
 
 
 
+
+

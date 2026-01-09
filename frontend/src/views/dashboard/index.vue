@@ -13,23 +13,23 @@
           <span>账户管理</span>
           <i class="el-icon-arrow-down"></i>
         </div>
-        <div class="menu-item">
+        <div class="menu-item" :class="{ active: $route.path === '/assets/manage' }" @click="handleMenuClick('/assets/manage')">
           <span>碳资产管理</span>
           <i class="el-icon-arrow-down"></i>
         </div>
-        <div class="menu-item">
+        <div class="menu-item" :class="{ active: $route.path === '/assets/develop' }" @click="handleMenuClick('/assets/develop')">
           <span>碳资产开发</span>
           <i class="el-icon-arrow-down"></i>
         </div>
-        <div class="menu-item">
+        <div class="menu-item" :class="{ active: $route.path === '/trade/manage' }" @click="handleMenuClick('/trade/manage')">
           <span>碳交易管理</span>
           <i class="el-icon-arrow-down"></i>
         </div>
-        <div class="menu-item">
+        <div class="menu-item" :class="{ active: $route.path === '/news' }" @click="handleMenuClick('/news')">
           <span>碳资讯</span>
           <i class="el-icon-arrow-down"></i>
         </div>
-        <div class="menu-item">
+        <div class="menu-item" :class="{ active: $route.path === '/system/manage' }" @click="handleMenuClick('/system/manage')">
           <span>系统管理</span>
           <i class="el-icon-arrow-down"></i>
         </div>
