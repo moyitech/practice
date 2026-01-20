@@ -1,0 +1,38 @@
+# OS/editor
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Logs
+*.log
+logs/
+hs_err_pid*
+
+# Maven/Java
+target/
+**/target/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+.mvn/timing.properties
+
+# Frontend
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+
+# Local env/config
+.env.local
+.env.*.local
+application-local.yml
